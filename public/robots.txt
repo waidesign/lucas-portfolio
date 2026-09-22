@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://waiphyoaung.framer.website/sitemap.xml
