@@ -5,7 +5,7 @@ import {
   Check, 
   Copy,
   Calendar,
-  Mail
+  Mail,
 } from 'lucide-react';
 import { profileData } from '../data/profile';
 import { Button } from './Button';
@@ -77,8 +77,34 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             {/* Social Links line */}
-            <div className="pt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs">
+            <div className="pt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs">
               <span className="text-neutral-400 dark:text-neutral-500">Links</span>
+              {/* Behance — hover tooltip */}
+              <div className="relative group/behance">
+                <a
+                  href="https://www.behance.net/waiphyoaungdesign"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-0.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                >
+                  <span>Behance</span>
+                  <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover/behance:text-neutral-900 dark:group-hover/behance:text-white transition-colors group-hover/behance:translate-x-0.5 group-hover/behance:-translate-y-0.5" />
+                </a>
+                {/* Tooltip: slides up on hover */}
+                <div
+                  className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-30
+                    opacity-0 translate-y-1.5 group-hover/behance:opacity-100 group-hover/behance:translate-y-0
+                    transition-all duration-200 ease-out"
+                >
+                  <div className="px-2.5 py-1.5 rounded-xs bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 whitespace-nowrap shadow-lg text-[10px] font-medium">
+                    Discover Motion and Video Editing Portfolio.
+                  </div>
+                  {/* Caret */}
+                  <div className="w-0 h-0 border-x-[5px] border-x-transparent border-t-[5px] border-t-neutral-900 dark:border-t-neutral-100 mx-auto" />
+                </div>
+              </div>
+              <span className="text-neutral-300 dark:text-neutral-700">•</span>
+              {/* LinkedIn Link */}
               <a
                 href="https://linkedin.com/in/waiphyoaung-design"
                 target="_blank"
@@ -89,6 +115,18 @@ export const Footer: React.FC<FooterProps> = ({
                 <ArrowUpRight className="w-3 h-3 text-neutral-400" />
               </a>
               <span className="text-neutral-300 dark:text-neutral-700">•</span>
+              {/* GitHub Link */}
+              <a
+                href="https://github.com/waidesign"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-0.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
+              >
+                <span>GitHub</span>
+                <ArrowUpRight className="w-3 h-3 text-neutral-400" />
+              </a>
+              <span className="text-neutral-300 dark:text-neutral-700">•</span>
+              {/* Medium Link */}
               <a
                 href="https://medium.com/@waiphyoaung.design"
                 target="_blank"
@@ -114,6 +152,7 @@ export const Footer: React.FC<FooterProps> = ({
               >
                 <Calendar className="w-3.5 h-3.5 shrink-0" />
                 <span className="truncate sm:whitespace-normal">Schedule a Virtual Chat</span>
+                <ExternalLink className="w-3.5 h-3.5 shrink-0" />
               </Button>
 
               <Button

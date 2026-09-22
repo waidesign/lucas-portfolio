@@ -7,11 +7,13 @@ export interface Testimonial {
   quote: string;
   author: string;
   role: string;
+  company?: string;
   relationship: string;
   initials: string;
   isReal?: boolean;
 }
 
+// Only the first 2 are shown; the rest are hidden until ready
 const TESTIMONIALS: Testimonial[] = [
   {
     id: 'hafsa-a',
@@ -19,59 +21,73 @@ const TESTIMONIALS: Testimonial[] = [
       "Having managed Wai, I can confidently say he is a standout asset to our product team. He uniquely combines sharp UI/UX design with fluid, purposeful motion design that brings products to life. Wai doesn't just make things look good—he solves real user problems and thinks through every edge case. His dynamic prototypes and micro-interactions consistently elevated our user experience and design standards.",
     author: 'Hafsa A.',
     role: 'Project Manager',
+    company: 'Empire Pixel Co., Ltd Canada',
     relationship: 'Direct Manager',
     initials: 'HA',
     isReal: true,
   },
   {
-    id: 'marcus-t',
+    id: 'fahad-q',
     quote:
-      'Working with Wai bridged the gap between Figma and production code effortlessly. His specifications for animations, easing curves, and design tokens saved our frontend team countless engineering hours. He thinks like an engineer while designing with impeccable visual restraint.',
-    author: 'Marcus T.',
-    role: 'Staff Frontend Engineer',
-    relationship: 'Engineering Lead / Colleague',
-    initials: 'MT',
+      "I've had the pleasure of working closely with Wai Phyo Aung at Empire Pixel, where I've had the opportunity to manage and guide him as an Art Director.\n\nWhen Wai started with us, his core strengths were in animation and video editing. But what really stood out to me was his mindset. He was never someone who wanted to stay limited to what he already knew. He consistently pushed himself to learn, experiment, and take on new challenges. Over time, I watched him grow beyond animation and editing and develop himself into a stronger, more versatile designer. He started thinking more deeply about composition, visual hierarchy, typography, storytelling, and the overall creative direction behind a piece of work, not just how to execute it.\n\nWhat impressed me even more was how quickly he adapted to the changing creative landscape with AI. Wai embraced new AI-powered workflows and explored vibe coding through Google AI Studio, Antigravity, and Claude Code, using these tools not simply as shortcuts, but as ways to experiment, prototype, solve problems, and expand what he could create. That willingness to adapt is something I genuinely value in a creative professional.\n\nFrom an Art Director's perspective, one of the most rewarding things is seeing someone you've worked with evolve. Wai has gone from being primarily an animator and editor to becoming a more complete creative, someone who can think across motion, video, design, technology, and AI.\n\nBeyond his technical abilities, Wai is hardworking, curious, receptive to feedback, and willing to step outside his comfort zone. He doesn't just wait for someone to tell him what to learn. He actively explores and finds ways to improve himself.\n\nI'm genuinely proud of the growth I've seen in him at Empire Pixel, and I believe his ability to combine creativity with emerging technology will continue to open new doors for him. Wai is a great example of what happens when talent is combined with curiosity, adaptability, and the willingness to keep learning.",
+    author: 'Fahad Qaiser',
+    role: 'Art Director',
+    company: 'Empire Pixel Co., Ltd Canada',
+    relationship: 'Art Director / Direct Manager',
+    initials: 'FQ',
+    isReal: true,
   },
-  {
-    id: 'elena-r',
-    quote:
-      'Wai has a rare ability to translate complex product logic into crisp, intuitive workflows. His kinetic prototypes and micro-interactions clarified multi-step flows and materially reduced onboarding friction for hundreds of thousands of users.',
-    author: 'Elena R.',
-    role: 'Head of Product',
-    relationship: 'Product Leadership',
-    initials: 'ER',
-  },
-  {
-    id: 'david-k',
-    quote:
-      'Wai’s attention to detail across typography, responsive layouts, and design systems is world-class. He established motion and interaction patterns that created a cohesive, high-craft benchmark across our entire product suite.',
-    author: 'David K.',
-    role: 'Design Systems Lead',
-    relationship: 'Design Peer',
-    initials: 'DK',
-  },
+  // Hidden testimonials — uncomment to re-enable
+  // {
+  //   id: 'marcus-t',
+  //   quote: 'Working with Wai bridged the gap between Figma and production code effortlessly...',
+  //   author: 'Marcus T.',
+  //   role: 'Staff Frontend Engineer',
+  //   relationship: 'Engineering Lead / Colleague',
+  //   initials: 'MT',
+  // },
+  // {
+  //   id: 'elena-r',
+  //   quote: 'Wai has a rare ability to translate complex product logic into crisp, intuitive workflows...',
+  //   author: 'Elena R.',
+  //   role: 'Head of Product',
+  //   relationship: 'Product Leadership',
+  //   initials: 'ER',
+  // },
+  // {
+  //   id: 'david-k',
+  //   quote: "Wai's attention to detail across typography, responsive layouts, and design systems is world-class...",
+  //   author: 'David K.',
+  //   role: 'Design Systems Lead',
+  //   relationship: 'Design Peer',
+  //   initials: 'DK',
+  // },
 ];
 
 export const TestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [expanded, setExpanded] = useState(false);
 
   const total = TESTIMONIALS.length;
   const current = TESTIMONIALS[currentIndex];
 
+  const handleSelect = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+    setExpanded(false);
+  };
+
   const handleNext = () => {
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % total);
+    setExpanded(false);
   };
 
   const handlePrev = () => {
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + total) % total);
-  };
-
-  const handleSelect = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
+    setExpanded(false);
   };
 
   // Slide animation variants
@@ -142,10 +158,25 @@ export const TestimonialsSection: React.FC = () => {
               <Quote className="w-5 h-5 text-neutral-400 dark:text-neutral-500 rotate-180" />
             </div>
 
-            {/* Testimonial Quote */}
-            <blockquote className="text-sm sm:text-base text-neutral-800 dark:text-neutral-200 leading-relaxed font-normal">
-              &ldquo;{current.quote}&rdquo;
-            </blockquote>
+            {/* Testimonial Quote with read-more toggle */}
+            <div>
+              <blockquote
+                className={`text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed font-normal whitespace-pre-line overflow-hidden transition-all duration-300 ${
+                  expanded ? '' : 'line-clamp-4'
+                }`}
+              >
+                &ldquo;{current.quote}&rdquo;
+              </blockquote>
+              {/* Only show toggle if quote is long enough to be clamped */}
+              {current.quote.length > 300 && (
+                <button
+                  onClick={() => setExpanded((e) => !e)}
+                  className="mt-2 text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-medium cursor-pointer"
+                >
+                  {expanded ? 'Show less ↑' : 'Read more ↓'}
+                </button>
+              )}
+            </div>
 
             {/* Author Footer & Step Dots */}
             <div className="pt-3 border-t border-neutral-100 dark:border-neutral-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -159,6 +190,11 @@ export const TestimonialsSection: React.FC = () => {
                   </div>
                   <div className="text-xs text-neutral-500 dark:text-neutral-400">
                     {current.role}
+                    {current.company && (
+                      <span className="text-neutral-400 dark:text-neutral-500">
+                        {' '}|{' '}{current.company}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

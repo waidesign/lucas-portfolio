@@ -164,7 +164,7 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 min-w-0 overflow-hidden">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 min-w-0">
               {/* Left Side: Avatar + Details */}
               <div className="flex items-center gap-3 sm:gap-5 min-w-0 flex-1">
                 {/* Designer Avatar with subtle status border */}
@@ -199,7 +199,7 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                 </div>
               </div>
 
-              {/* Right Side: Available for work badge & Links line */}
+              {/* Right Side: Available for work badge & Links line (smaller than left column) */}
               <div className="flex flex-col items-start sm:items-end gap-2.5 pt-1 sm:pt-0 shrink-0 min-w-0">
                 {/* Status Pill (Desktop only) */}
                 <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xs text-xs font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shadow-xs w-fit">
@@ -207,27 +207,72 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                   Available for work
                 </span>
 
-                {/* Social Links line */}
-                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs sm:justify-end">
+                {/* Social Links line — flex wrap */}
+                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs sm:justify-end">
                   <span className="text-neutral-400 dark:text-neutral-500">Links</span>
+
+                  {/* Behance — hover tooltip */}
+                  <div className="relative group/behance">
+                    <a
+                      href="https://www.behance.net/waiphyoaungdesign"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-0.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                    >
+                      <span>Behance</span>
+                      <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover/behance:text-neutral-900 dark:group-hover/behance:text-white transition-colors group-hover/behance:translate-x-0.5 group-hover/behance:-translate-y-0.5" />
+                    </a>
+                    {/* Tooltip: slides up on hover */}
+                    <div
+                      className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-30
+                        opacity-0 translate-y-1.5 group-hover/behance:opacity-100 group-hover/behance:translate-y-0
+                        transition-all duration-200 ease-out"
+                    >
+                      <div className="px-2.5 py-1.5 rounded-xs bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 whitespace-nowrap shadow-lg text-[10px] font-medium">
+                        Discover Motion and Video Editing Portfolio.
+                      </div>
+                      {/* Caret */}
+                      <div className="w-0 h-0 border-x-[5px] border-x-transparent border-t-[5px] border-t-neutral-900 dark:border-t-neutral-100 mx-auto" />
+                    </div>
+                  </div>
+
+                  <span className="text-neutral-300 dark:text-neutral-700">•</span>
+
+                  {/* LinkedIn */}
                   <a
                     href="https://linkedin.com/in/waiphyoaung-design"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-0.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                    className="inline-flex items-center gap-0.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors group/li"
                   >
                     <span>LinkedIn</span>
-                    <ArrowUpRight className="w-3 h-3 text-neutral-400" />
+                    <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover/li:text-neutral-900 dark:group-hover/li:text-white transition-colors group-hover/li:translate-x-0.5 group-hover/li:-translate-y-0.5" />
                   </a>
+
                   <span className="text-neutral-300 dark:text-neutral-700">•</span>
+
+                  {/* GitHub */}
+                  <a
+                    href="https://github.com/waidesign"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-0.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors group/gh"
+                  >
+                    <span>GitHub</span>
+                    <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover/gh:text-neutral-900 dark:group-hover/gh:text-white transition-colors group-hover/gh:translate-x-0.5 group-hover/gh:-translate-y-0.5" />
+                  </a>
+
+                  <span className="text-neutral-300 dark:text-neutral-700">•</span>
+
+                  {/* Medium */}
                   <a
                     href="https://medium.com/@waiphyoaung.design"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-0.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                    className="inline-flex items-center gap-0.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors group/med"
                   >
                     <span>Medium</span>
-                    <ArrowUpRight className="w-3 h-3 text-neutral-400" />
+                    <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover/med:text-neutral-900 dark:group-hover/med:text-white transition-colors group-hover/med:translate-x-0.5 group-hover/med:-translate-y-0.5" />
                   </a>
                 </div>
               </div>
@@ -249,7 +294,7 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                 title="Open resume in new tab"
               >
                 <span>Get Resume</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3.5 h-3.5" />
               </Button>
             </div>
 
@@ -352,27 +397,40 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                 </span>
                 <div
                   role="tooltip"
-                  className="pointer-events-none absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-150 flex flex-col items-start sm:items-center z-30 drop-shadow-sm"
+                  className="pointer-events-none absolute bottom-full right-0 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-150 flex flex-col items-end sm:items-center z-30 drop-shadow-sm"
                 >
-                  <div className="w-max max-w-[220px] sm:max-w-none px-2.5 py-1 text-xs font-normal rounded bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 shadow-md">
+                  <div className="w-max max-w-[200px] sm:max-w-none px-2.5 py-1 text-xs font-normal rounded bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 shadow-md">
                     Click any expand icon to see more details.
                   </div>
-                  <div className="w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-neutral-900 dark:border-t-neutral-100 -mt-px ml-2 sm:ml-0" />
+                  <div className="w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-neutral-900 dark:border-t-neutral-100 -mt-px mr-2 sm:mr-0" />
                 </div>
               </div>
             </div>
 
             <div className="space-y-8 pt-1">
               {experienceData.roles.map((role, idx) => (
-                <div 
+                <div
                   key={role.id}
                   className={`grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-start ${
                     idx > 0 ? 'pt-8 border-t border-dotted border-neutral-300 dark:border-neutral-800' : ''
                   }`}
                 >
-                  <div className="md:col-span-3 text-xs font-mono text-neutral-500 dark:text-neutral-400">
-                    {role.period}
+                  {/* Period column: on mobile, flex row with expand button at the end */}
+                  <div className="md:col-span-3 flex items-center justify-between md:block">
+                    <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
+                      {role.period}
+                    </span>
+                    {/* Mobile-only expand button — inline with period text */}
+                    <button
+                      onClick={() => setSelectedExperienceModal(role)}
+                      className="md:hidden p-1.5 rounded-xs bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0 shadow-xs"
+                      title={`View ${role.role} details & key achievements`}
+                      aria-label={`View ${role.role} details & key achievements`}
+                    >
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </button>
                   </div>
+
                   <div className="md:col-span-9 space-y-2.5">
                     <div className="flex items-start justify-between gap-3">
                       <div className="space-y-1">
@@ -397,14 +455,14 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                         </p>
                       </div>
 
-                      {/* Expandable Modal Icon Button */}
+                      {/* Desktop-only expand button — inline with role title */}
                       <button
                         onClick={() => setSelectedExperienceModal(role)}
-                        className="p-1.5 sm:p-2 rounded-xs bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0 shadow-xs"
+                        className="hidden md:inline-flex p-2 rounded-xs bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0 shadow-xs"
                         title={`View ${role.role} details & key achievements`}
                         aria-label={`View ${role.role} details & key achievements`}
                       >
-                        <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        <Maximize2 className="w-4 h-4" />
                       </button>
                     </div>
 
@@ -438,12 +496,12 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                   </span>
                   <div
                     role="tooltip"
-                    className="pointer-events-none absolute bottom-full left-0 sm:left-1/2 sm:-translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-150 flex flex-col items-start sm:items-center z-30 drop-shadow-sm"
+                    className="pointer-events-none absolute bottom-full right-0 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-150 flex flex-col items-end sm:items-center z-30 drop-shadow-sm"
                   >
-                    <div className="w-max max-w-[220px] sm:max-w-none px-2.5 py-1 text-xs font-normal rounded bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 shadow-md">
+                    <div className="w-max max-w-[200px] sm:max-w-none px-2.5 py-1 text-xs font-normal rounded bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 shadow-md">
                       Click any case study to learn more details.
                     </div>
-                    <div className="w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-neutral-900 dark:border-t-neutral-100 -mt-px ml-2 sm:ml-0" />
+                    <div className="w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-neutral-900 dark:border-t-neutral-100 -mt-px mr-2 sm:mr-0" />
                   </div>
                 </div>
               </div>
@@ -463,7 +521,7 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                   <React.Fragment key={project.id}>
                     <div
                       onClick={() => onOpenCaseStudy(project.id)}
-                      className="group p-4 sm:p-6 rounded-xs border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#0c0c0e] hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 cursor-pointer flex flex-col justify-between space-y-4 shadow-xs hover:shadow-md"
+                      className="relative group p-4 sm:p-6 rounded-xs border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#0c0c0e] hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 cursor-pointer flex flex-col justify-between space-y-4 shadow-xs hover:shadow-md"
                     >
                       <div className="space-y-3">
                         <div className="flex items-center">
@@ -474,10 +532,14 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
 
                         <div className="space-y-1">
                           <div className="flex items-center justify-between">
-                            <h3 className="text-sm font-bold text-neutral-900 dark:text-white transition-colors">
+                            <h3 className="text-sm font-bold text-neutral-900 dark:text-white transition-colors pr-8 sm:pr-0">
                               {project.title}
                             </h3>
-                            <Maximize2 className="w-4 h-4 text-neutral-400 group-hover:scale-110 transition-transform" />
+                            {/* Maximize2 icon — absolute top-right on mobile, inline on desktop */}
+                            <Maximize2 className="hidden sm:block w-4 h-4 text-neutral-400 group-hover:scale-110 transition-transform shrink-0" />
+                            <div className="absolute top-3 right-3 sm:hidden p-1.5 rounded-xs bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-xs">
+                              <Maximize2 className="w-3.5 h-3.5 text-neutral-400" />
+                            </div>
                           </div>
                           <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400">
                             {project.subtitle}
@@ -503,12 +565,33 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                       <div className="group/banner p-4 sm:p-6 rounded-xs border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#0c0c0e] shadow-xs">
                         {/* 2-column layout */}
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center">
-                          {/* Left Column: Compact GIF (Black & White by default on desktop, original on hover; original on mobile) */}
+                          {/* Left Column: GIF (16:9 on mobile, square on desktop) */}
                           <div className="w-full md:col-span-4 flex justify-center sm:justify-start">
-                            <div className="w-full max-w-[200px] sm:max-w-[220px]">
+                            <div className="w-full md:max-w-[220px]">
+                              {/* Mobile: full-width center-cropped (1:1 GIF in 16:9 frame, no grey bars) */}
+                              <div className="block md:hidden relative aspect-video w-full rounded-xs overflow-hidden select-none">
+                                <iframe
+                                  src="https://giphy.com/embed/7NoNw4pMNTvgc"
+                                  style={{
+                                    position: 'absolute',
+                                    left: 0,
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    width: '100%',
+                                    /* 16/9 × 100% makes the square iframe fill the full width */
+                                    height: '177.78%',
+                                    border: 0,
+                                    pointerEvents: 'none',
+                                  }}
+                                  className="giphy-embed pointer-events-none"
+                                  allowFullScreen
+                                  title="Motion Design & Video Reel via GIPHY"
+                                />
+                              </div>
+                              {/* Desktop: square (1:1) with grayscale hover effect */}
                               <div
                                 style={{ width: '100%', height: 0, paddingBottom: '100%', position: 'relative' }}
-                                className="rounded-xs overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 select-none md:filter md:grayscale md:group-hover/banner:grayscale-0 md:hover:grayscale-0 transition-all duration-500"
+                                className="hidden md:block w-full rounded-xs overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 select-none md:filter md:grayscale md:group-hover/banner:grayscale-0 md:hover:grayscale-0 transition-all duration-500"
                               >
                                 <iframe
                                   src="https://giphy.com/embed/7NoNw4pMNTvgc"
@@ -553,7 +636,7 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
                                 className="w-full sm:w-auto"
                               >
                                 <span>Case studies on Behance</span>
-                                <ArrowUpRight className="w-3.5 h-3.5" />
+                                <ExternalLink className="w-3.5 h-3.5" />
                               </Button>
                             </div>
                           </div>
@@ -661,7 +744,7 @@ export const CleanPortfolio: React.FC<CleanPortfolioProps> = ({
               <h3 className="text-xs font-bold text-neutral-900 dark:text-white group-hover:text-white dark:group-hover:text-slate-950 transition-colors duration-300">
                 Schedule a Virtual Chat
               </h3>
-              <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white dark:group-hover:text-slate-950 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ExternalLink className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white dark:group-hover:text-slate-950 transition-all duration-300" />
             </div>
             <p className="relative z-10 text-[11px] text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-300 dark:group-hover:text-neutral-700 mt-1 leading-relaxed transition-colors duration-300">
               Start the Conversation! Great Ideas Begin Here.

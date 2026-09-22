@@ -6,6 +6,7 @@ import {
   Menu, 
   X, 
   ArrowUpRight,
+  ExternalLink,
   Globe2
 } from 'lucide-react';
 
@@ -188,7 +189,7 @@ export const Nav: React.FC<NavProps> = ({
                 className="w-full py-2.5 text-xs font-mono"
               >
                 <span>Get Resume</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400" />
+                <ExternalLink className="w-3.5 h-3.5 text-neutral-400" />
               </Button>
             </div>
           </motion.div>
